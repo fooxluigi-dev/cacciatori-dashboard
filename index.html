@@ -190,20 +190,41 @@ tr:hover{background:var(--green-pale)}
 
 <script>
 // ===== DATA LOADING =====
-const SHEET_CSV = "https://docs.google.com/spreadsheets/d/1SSWMcFqKAvcke1YG1gJeLiymNLQO8IPtPxnWUxz2t_8/gviz/tq?tqx=out:csv";
+const CORS_PROXY = "https://api.allorigins.win/raw?url=";
+// Try multiple CSV sources for reliability
+const SHEET_CSV = "https://docs.google.com/spreadsheets/d/1SSWMcFqKAvcke1YG1gJeLiymNLQO8IPtPxnWUxz2t_8/export?format=csv";
+const SHEET_CSV_BACKUP = "https://docs.google.com/spreadsheets/d/1SSWMcFqKAvcke1YG1gJeLiymNLQO8IPtPxnWUxz2t_8/gviz/tq?tqx=out:csv";
+let csvUrlAttempt = 0;
 
 let rawData = null;
 let currentFilter = null;
 
+let lastOkUrl = SHEET_CSV;
+let useProxy = false;
 async function loadData(){
   const app = document.getElementById('app');
   try{
-    const r = await fetch(SHEET_CSV + '&' + Date.now());
+    const url = (csvUrlAttempt % 2 === 0) ? SHEET_CSV : SHEET_CSV_BACKUP;
+    const finalUrl = useProxy ? CORS_PROXY + encodeURIComponent(url + '&' + Date.now()) : url + '&' + Date.now();
+    const r = await fetch(finalUrl);
+    if(!r.ok) throw new Error('HTTP ' + r.status);
     const csv = await r.text();
+    if(csv.trim().startsWith('<') && csv.includes('<html')) throw new Error('HTML returned');
+    if(csv.trim().startsWith('<!')) throw new Error('HTML returned');
+    if(csv.trim().length < 50) throw new Error('Too short');
     rawData = parseCSV(csv);
+    lastOkUrl = url;
+    csvUrlAttempt = 0;
     render();
   }catch(e){
-    app.innerHTML = `<div class="empty">❌ Errore caricamento. Prova a ricaricare la pagina.</div>`;
+    csvUrlAttempt++;
+    if(csvUrlAttempt < 6){
+      if(csvUrlAttempt === 3) { useProxy = true; }
+      setTimeout(loadData, 800);
+    } else {
+      app.innerHTML = `<div class="empty-state">⏳ Caricamento dati...<br><small>Riprovo tra 20 minuti</small></div>`;
+      console.log('CSV fetch failed:', e.message);
+    }
   }
 }
 
@@ -424,7 +445,7 @@ function renderTable(section, items){
 
 // ===== AUTO REFRESH =====
 loadData();
-setInterval(loadData, 60000); // Refresh every minute
+setInterval(loadData, 1200000); // Refresh every 20 minutes
 </script>
 </body>
 </html>
