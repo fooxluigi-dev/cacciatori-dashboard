@@ -261,14 +261,14 @@ function render(){
   const app = document.getElementById('app');
 
   let html = `<div class="stats">
-    <div class="stat"><span class="num">${s.maschi + s.maschi2 + s.caprioli + s.femmine}</span><span class="lbl">Totali</span></div>
+    <div class="stat"><span class="num">${s.maschi + s.cervi + s.caprioli + s.femmine}</span><span class="lbl">Totali</span></div>
     <div class="stat"><span class="num">29</span><span class="lbl">Quota</span></div>
-    <div class="stat"><span class="num">${29 - (s.maschi + s.maschi2 + s.caprioli + s.femmine)}</span><span class="lbl">Rimasti</span></div>
+    <div class="stat"><span class="num">${29 - (s.maschi + s.cervi + s.caprioli + s.femmine)}</span><span class="lbl">Rimasti</span></div>
     <div class="stat"><span class="num">${s.cacciatori}</span><span class="lbl">Cacciatori</span></div>
   </div>`;
 
   // Totali Stagione — always on top
-  const totAbbattuti = s.maschi + s.maschi2 + s.caprioli + s.femmine;
+  const totAbbattuti = s.maschi + s.cervi + s.caprioli + s.femmine;
   const totQuota = 7 + 8 + 8 + 14; // fixed quotas
   const pctTot = Math.round((totAbbattuti / totQuota) * 100);
   function pctColor(v){ return v > 80 ? '#d9534f' : v > 50 ? '#f0ad4e' : '#5cb85c'; }
@@ -276,7 +276,7 @@ function render(){
     <div class="totali-title">📊 Totali Stagione</div>
     <div class="totali-grid">
       <div class="totali-item"><span class="tl">🦌 Maschi</span><span class="tr">${s.maschi}<small>/7</small></span><div class="bar"><div class="fill" style="width:${Math.round((s.maschi/7)*100)}%;background:${pctColor((s.maschi/7)*100)}"></div></div></div>
-      <div class="totali-item"><span class="tl">🦌 Cervo 2^</span><span class="tr">${s.maschi2}<small>/8</small></span><div class="bar"><div class="fill" style="width:${Math.round((s.maschi2/8)*100)}%;background:${pctColor((s.maschi2/8)*100)}"></div></div></div>
+      <div class="totali-item"><span class="tl">🦌 2^ Classe</span><span class="tr">${s.cervi}<small>/8</small></span><div class="bar"><div class="fill" style="width:${Math.round((s.cervi/8)*100)}%;background:${pctColor((s.cervi/8)*100)}"></div></div></div>
       <div class="totali-item"><span class="tl">🐐 Caprioli</span><span class="tr">${s.caprioli}<small>/8</small></span><div class="bar"><div class="fill" style="width:${Math.round((s.caprioli/8)*100)}%;background:${pctColor((s.caprioli/8)*100)}"></div></div></div>
       <div class="totali-item"><span class="tl">♀️ Femmine</span><span class="tr">${s.femmine}<small>/14</small></span><div class="bar"><div class="fill" style="width:${Math.round((s.femmine/14)*100)}%;background:${pctColor((s.femmine/14)*100)}"></div></div></div>
     </div>
