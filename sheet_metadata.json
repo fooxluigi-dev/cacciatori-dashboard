@@ -1,0 +1,12 @@
+{
+  "sheet_id": "1SSWMcFqKAvcke1YG1gJeLiymNLQO8IPtPxnWUxz2t_8",
+  "last_updated": "2026-05-26",
+  "csv_source": "gviz/tq?tqx=out:csv",
+  "sections": {
+    "cervo_maschio_1_classe": {"quota": 7, "abbattuti": 6, "rows": 7},
+    "cervo_2_classe": {"quota": 8, "abbattuti": 7, "rows": 8},
+    "caprioli": {"quota": 8, "abbattuti": 5, "rows": 8},
+    "femmine_capretti": {"quota": 14, "abbattuti": 5, "rows": 14}
+  },
+  "note": "Run `python3 ~/.hermes/hermes-agent/scripts/update_hunting_data.py` to refresh data from the live sheet"
+}

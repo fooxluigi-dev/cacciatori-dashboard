@@ -8,280 +8,256 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{
-  font-family:'Inter',sans-serif;
-  background:#f5f2eb;
-  color:#2d2d2d;
-  min-height:100vh;
-  padding-bottom:80px;
-}
-/* Hero */
-.hero{
-  background:linear-gradient(135deg,#1a3c34,#2d5a4a);
-  color:#fff;
-  padding:48px 20px 36px;
-  text-align:center;
-  position:relative;
-  overflow:hidden;
-}
-.hero h1{font-size:1.8rem;font-weight:800;letter-spacing:-0.5px}
+body{font-family:'Inter',sans-serif;background:#f5f2eb;color:#2d2d2d;padding-bottom:80px}
+.hero{background:linear-gradient(135deg,#1a3c34,#2d5a4a);color:#fff;padding:48px 20px 36px;text-align:center}
+.hero h1{font-size:1.8rem;font-weight:800}
 .hero .sub{font-size:0.85rem;opacity:0.8;margin-top:4px}
-.hero .badge{
-  display:inline-block;
-  margin-top:12px;
-  padding:6px 16px;
-  background:rgba(255,255,255,0.1);
-  border-radius:100px;
-  font-size:0.75rem;
-  backdrop-filter:blur(4px);
-}
-/* Stats */
-.stats{
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr 1fr;
-  gap:8px;
-  padding:16px;
-  margin:-24px 12px 0;
-}
-.stat{
-  background:#fff;
-  border-radius:16px;
-  padding:14px 8px;
-  text-align:center;
-  box-shadow:0 4px 20px rgba(0,0,0,0.06);
-}
+.hero .badge{display:inline-block;margin-top:12px;padding:6px 16px;background:rgba(255,255,255,0.1);border-radius:100px;font-size:0.75rem}
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;padding:16px;margin:-24px 12px 0}
+.stat{background:#fff;border-radius:16px;padding:14px 8px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
 .stat .num{font-size:1.5rem;font-weight:800;color:#1a3c34}
-.stat .label{font-size:0.6rem;text-transform:uppercase;letter-spacing:0.3px;color:#888;margin-top:2px}
-/* Filters */
-.filters{
-  display:flex;
-  gap:6px;
-  padding:12px 16px 4px;
-  overflow-x:auto;
-  scrollbar-width:none;
-}
-.filters::-webkit-scrollbar{display:none}
-.filter-btn{
-  flex-shrink:0;
-  padding:7px 16px;
-  border-radius:100px;
-  border:1.5px solid #ddd;
-  background:#fff;
-  font-size:0.8rem;
-  font-weight:500;
-  cursor:pointer;
-  transition:all 0.2s;
-  color:#555;
-}
-.filter-btn.active{background:#1a3c34;color:#fff;border-color:#1a3c34}
-.filter-btn:hover:not(.active){background:#f0f0f0}
-/* Sections */
-.section{
-  margin:16px;
-  background:#fff;
-  border-radius:16px;
-  overflow:hidden;
-  box-shadow:0 2px 12px rgba(0,0,0,0.04);
-}
-.section-header{
-  padding:16px 18px 12px;
-  border-bottom:1px solid #f0eee8;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.section-header h2{font-size:1rem;font-weight:700}
-.section-header .count{
-  font-size:0.75rem;
-  color:#888;
-  background:#f5f2eb;
-  padding:3px 10px;
-  border-radius:100px;
-}
-/* Table */
-.table-wrap{overflow-x:auto;padding:0 0 4px}
-table{width:100%;border-collapse:collapse;font-size:0.78rem;min-width:500px}
-th{
-  text-align:left;
-  padding:10px 12px;
-  font-weight:600;
-  color:#888;
-  font-size:0.7rem;
-  text-transform:uppercase;
-  letter-spacing:0.3px;
-  background:#faf8f4;
-  border-bottom:1px solid #f0eee8;
-  white-space:nowrap;
-  position:sticky;
-  top:0;
-}
-td{padding:10px 12px;border-bottom:1px solid #f5f2eb;white-space:nowrap}
-tr:last-child td{border-bottom:none}
-tr:hover td{background:#faf8f4}
-/* Hunter cards */
-.hunter-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-  padding:12px;
-}
-.hunter-card{
-  background:#faf8f4;
-  border-radius:12px;
-  padding:14px;
-  text-align:center;
-}
-.hunter-card .name{font-weight:600;font-size:0.9rem}
-.hunter-card .count{font-size:1.3rem;font-weight:800;color:#1a3c34;margin-top:4px}
-.hunter-card .label{font-size:0.65rem;color:#888;text-transform:uppercase;letter-spacing:0.3px}
-/* Footer info */
-.footer-note{
-  text-align:center;
-  padding:20px;
-  font-size:0.75rem;
-  color:#aaa;
-  font-style:italic;
-}
+.stat .label{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.5px;color:#888;margin-top:2px}
+.section{padding:20px 16px 8px}
+.section h2{font-size:1.2rem;margin-bottom:2px}
+.section .quota{font-size:0.8rem;color:#888;margin-bottom:12px}
+.filter-bar{display:flex;gap:6px;padding:0 16px 12px;overflow-x:auto;scrollbar-width:none}
+.filter-bar::-webkit-scrollbar{display:none}
+.filter-btn{flex-shrink:0;padding:8px 16px;border-radius:100px;border:1.5px solid #1a3c34;background:transparent;color:#1a3c34;font-size:0.8rem;font-weight:600;cursor:pointer}
+.filter-btn.active{background:#1a3c34;color:#fff}
+.filter-btn.all{background:transparent;color:#888;border-color:#ccc}
+.filter-btn.all.active{background:#1a3c34;color:#fff;border-color:#1a3c34}
+table{width:100%;border-collapse:collapse;font-size:0.82rem;margin:0 16px;width:calc(100% - 32px)}
+th{background:#1a3c34;color:#fff;padding:10px 8px;text-align:left;font-weight:600;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.3px;white-space:nowrap}
+td{padding:8px;border-bottom:1px solid #e8e4dc}
+tr:nth-child(even){background:rgba(26,60,52,0.03)}
+tr.quota{background:rgba(200,200,200,0.15);color:#aaa;font-style:italic}
+.badge-quota{display:inline-block;padding:2px 10px;border-radius:100px;font-size:0.65rem;font-weight:600;background:#e8f5e9;color:#2e7d32}
+.badge-quota.full{background:#ffebee;color:#c62828}
+.hunter-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 16px}
+.hunter-card{background:#fff;border-radius:12px;padding:12px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.hunter-card .name{font-weight:700;font-size:0.85rem}
+.hunter-card .stats{display:flex;gap:8px;margin:0;padding:6px 0 0;font-size:0.75rem;color:#555}
+.hunter-card .stats span{background:rgba(26,60,52,0.08);padding:2px 8px;border-radius:6px}
+.footer{text-align:center;padding:32px 20px;color:#aaa;font-size:0.75rem;font-style:italic}
 @media(max-width:480px){
-  .stats{grid-template-columns:1fr 1fr;gap:6px}
-  .hunter-grid{grid-template-columns:1fr 1fr}
-  table{font-size:0.72rem}
+  .stats{grid-template-columns:1fr 1fr}
+  .hunter-grid{grid-template-columns:1fr}
+  .stat .num{font-size:1.3rem}
+  th{font-size:0.65rem;padding:8px 4px}
+  td{font-size:0.75rem;padding:6px 4px}
 }
 </style>
 </head>
 <body>
 
 <div class="hero">
-  <h1>🦌 Cacciatori</h1>
-  <p class="sub">Associazione Caccia · Stagione 2025/2026</p>
-  <span class="badge">📊 Dashboard</span>
+  <h1>🦌 Cacciatori Gosaldo</h1>
+  <p class="sub">Stagione 2025/2026 · Fusoni · Caprioli · Femmine</p>
+  <div class="badge">Associazione Cacciatori</div>
 </div>
 
 <div id="app"></div>
 
+<div class="footer">
+  Dati aggiornati al 26 Maggio 2026 · <a href="https://docs.google.com/spreadsheets/d/1SSWMcFqKAvcke1YG1gJeLiymNLQO8IPtPxnWUxz2t_8" style="color:#888">Apri foglio</a>
+</div>
+
 <script>
-// ===== HARDCODED DATA (from Google Sheet fetch) =====
-// This will be replaced with live data once the sheet is published
-const CERVO_DATA = [
-  {n:1, loc:"La Mont", data:"20/08/2025", ora:"10:00", cacciatore:"2163", peso:40, eta:1, luogo:"Cella sede"},
-  {n:2, loc:"La Mont", data:"31/08/2025", ora:"6:30", cacciatore:"Case Claudio", peso:38, eta:1, luogo:"Cella sede"},
-  {n:3, loc:"La Mont", data:"02/09/2025", ora:"19:00", cacciatore:"Piva Mattia", peso:28, eta:0, luogo:"Cella sede"},
-  {n:4, loc:"Turbai", data:"07/09/2025", ora:"7:05", cacciatore:"Bettiolo Andrea", peso:38, eta:1, luogo:"Cella Cencenighe"},
-  {n:5, loc:"Turbai", data:"25/10/2025", ora:"8:00", cacciatore:"Dalla Francesca", peso:82, eta:"4-5", luogo:"Caneva"},
-  {n:6, loc:"La Mont", data:"16/11/2025", ora:"7:15", cacciatore:"Soc. Ursa Maior", peso:50, eta:2, luogo:"Cella sede"},
-  {n:7, loc:"La Mont", data:"28/12/2025", ora:"14:00", cacciatore:"Ruzza Marco", peso:36, eta:1, luogo:"Cella sede"},
+// ===== DATA (from real Google Sheet) =====
+
+// Sezione 1: Cervo Maschio 1^ Classe Fusoni — Quota 7
+const MASCHI = [
+  {n:1,loc:"La Mont",data:"20/08/2025",ora:"10:00",cacciatore:"2163",peso:40,eta:"1",luogo:"Cella sede"},
+  {n:2,loc:"La Mont",data:"31/08/2025",ora:"06:30",cacciatore:"Case Claudio",peso:58,eta:"1",luogo:"Cella sede"},
+  {n:3,loc:"Caminer",data:"11/09/2025",ora:"07:30",cacciatore:"Marcon Graziano",peso:65,eta:"1",luogo:"Cella sede"},
+  {n:4,loc:"Pala del Gal",data:"11/09/2025",ora:"10:20",cacciatore:"2163",peso:70,eta:"1",luogo:"Cella sede"},
+  {n:5,loc:"Turbai",data:"18/10/2025",ora:"18:50",cacciatore:"Masoch Moreno",peso:60,eta:"1",luogo:"Cella sede"},
+  {n:6,loc:"La Mont",data:"27/10/2025",ora:"",cacciatore:"Ren Mario",peso:53,eta:"1",luogo:"Cella sede"},
+  {n:7,loc:"—",data:"",ora:"",cacciatore:"",peso:"",eta:"",luogo:"",quota:true},
+];
+const QUOTA_MASCHI = 7;
+
+// Sezione 2: Cervo 2^ Classe — Quota 8
+const CERVI = [
+  {n:1,loc:"Acqua della Bisa",data:"18/10/2025",ora:"06:50",cacciatore:"Marcon Davide",accompagnatore:"Marcon Ivan",peso:95,eta:"2/3",luogo:"Cella sede",note:"Piano completato"},
+  {n:2,loc:"Col Mean",data:"18/10/2025",ora:"07:15",cacciatore:"Bedont Romeo",accompagnatore:"",peso:115,eta:"5/6",luogo:"Cella sede"},
+  {n:3,loc:"Pala de Camp",data:"18/10/2025",ora:"07:35",cacciatore:"Bedont Ernesto",accompagnatore:"",peso:116,eta:"5/6",luogo:"Cella sede"},
+  {n:4,loc:"Valeselle",data:"25/10/2025",ora:"07:20",cacciatore:"Masoch Simone",accompagnatore:"",peso:130,eta:"5/6",luogo:"Cella sede"},
+  {n:5,loc:"Lagon",data:"01/11/2025",ora:"07:00",cacciatore:"Renon Stefano",accompagnatore:"",peso:127,eta:"7",luogo:"Cella sede"},
+  {n:6,loc:"Turbai",data:"16/11/2025",ora:"07:00",cacciatore:"Bressan Alan",accompagnatore:"",peso:100,eta:"3",luogo:"Cella sede"},
+  {n:7,loc:"Scur",data:"19/11/2025",ora:"07:20",cacciatore:"Dell'Olivo Giuliano",accompagnatore:"",peso:"",eta:"4/5",luogo:"Cella sede"},
+  {n:8,loc:"—",data:"",ora:"",cacciatore:"",accompagnatore:"",peso:"",eta:"",luogo:"",quota:true},
+];
+const QUOTA_CERVI = 8;
+
+// Sezione 3: Caprioli — Quota 8
+const CAPRIOLI = [
+  {n:1,loc:"Cavallera",data:"18/10/2025",ora:"06:45",cacciatore:"Bressan Alan",peso:82,eta:"5",luogo:"Cella sede"},
+  {n:2,loc:"Pian Lonc",data:"22/10/2025",ora:"07:20",cacciatore:"Masoch Simone",peso:66,eta:"2/3",luogo:"Cella sede"},
+  {n:3,loc:"Stalnof",data:"09/11/2025",ora:"07:20",cacciatore:"Masoch Moreno",peso:80,eta:"",luogo:"Cella sede"},
+  {n:4,loc:"Margonola",data:"24/11/2025",ora:"16:50",cacciatore:"Bressan Alan",peso:75,eta:"3",luogo:"Cella sede"},
+  {n:5,loc:"Melane",data:"25/11/2025",ora:"07:05",cacciatore:"Case Claudio",peso:79,eta:"4",luogo:"Cella sede"},
+  {n:6,loc:"—",data:"",ora:"",cacciatore:"",peso:"",eta:"",luogo:"",quota:true},
+  {n:7,loc:"—",data:"",ora:"",cacciatore:"",peso:"",eta:"",luogo:"",quota:true},
+  {n:8,loc:"—",data:"",ora:"",cacciatore:"",peso:"",eta:"",luogo:"",quota:true},
+];
+const QUOTA_CAPRIOLI = 8;
+
+// Sezione 4: Femmine e Capretti
+const FEMMINE = [
+  {n:1,sesso:"F",loc:"Cristo delle traversade",data:"20/10/2025",ora:"16:45",cacciatore:"Marcon Davide",accompagnatore:"Marcon Ivan",peso:45,luogo:"Cella Sede"},
+  {n:2,sesso:"M",loc:"Zech",data:"20/10/2025",ora:"18:20",cacciatore:"Casaril Oscar",accompagnatore:"",peso:47,luogo:"Cella Sede"},
+  {n:3,sesso:"F",loc:"Pala de Camp",data:"08/11/2025",ora:"07:20",cacciatore:"Bedont Ernesto",accompagnatore:"",peso:40,luogo:"Cella Sede"},
+  {n:4,sesso:"M",loc:"Selle",data:"12/11/2025",ora:"09:50",cacciatore:"Case Claudio",accompagnatore:"",peso:39,luogo:"Cella Sede"},
+  {n:5,sesso:"F",loc:"Domadore",data:"17/11/2025",ora:"08:00",cacciatore:"Casaril Oscar",accompagnatore:"",peso:40,luogo:"Cella Sede"},
 ];
 
-const FEMMINE_DATA = [
-  {n:1, sesso:"F", loc:"La Mont", data:"09/08/2025", cacciatore:"Ruzza Marco", peso:null},
-  {n:2, sesso:"F", loc:"La Mont", data:"18/08/2025", cacciatore:"Bettiolo Andrea", peso:null},
-  {n:3, sesso:"M", loc:"La Mont", data:"23/08/2025", cacciatore:"Case Claudio", peso:null, note:"Capretto"},
-  {n:4, sesso:"F", loc:"Gares", data:"22/09/2025", cacciatore:"Grespan Renato", peso:null},
-  {n:5, sesso:"F", loc:"La Mont", data:"29/09/2025", cacciatore:"Dal Bianco Gabriele", peso:null},
-  {n:6, sesso:"F", loc:"La Mont", data:"30/09/2025", cacciatore:"Soppelsa Elia", peso:null},
-  {n:7, sesso:"F", loc:"La Mont", data:"04/10/2025", cacciatore:"Chiappetti Gianluca", peso:null},
-  {n:8, sesso:"M", loc:"Turbai", data:"09/10/2025", cacciatore:"Ruzza Marco", peso:null, note:"Capretto"},
-  {n:9, sesso:"F", loc:"Turbai", data:"09/10/2025", cacciatore:"Piva Mattia", peso:null},
-  {n:10, sesso:"M", loc:"Gares", data:"12/10/2025", cacciatore:"Grespan Renato", peso:null, note:"Capretto"},
-  {n:11, sesso:"F", loc:"La Mont", data:"14/10/2025", cacciatore:"Bettiolo Andrea", peso:null},
-  {n:12, sesso:"F", loc:"Turbai", data:"08/11/2025", cacciatore:"Bettiolo Andrea", peso:null},
-  {n:13, sesso:"F", loc:"Gares", data:"11/01/2026", cacciatore:"Grespan Renato", peso:null},
-  {n:14, sesso:"F", loc:"La Mont", data:"18/01/2026", cacciatore:"Piva Mattia", peso:null},
-];
+// Collect all unique hunters
+const allEntries = [...MASCHI.filter(r=>r.cacciatore), ...CERVI.filter(r=>r.cacciatore), ...CAPRIOLI.filter(r=>r.cacciatore), ...FEMMINE.filter(r=>r.cacciatore)];
+const HUNTERS = [...new Set(allEntries.map(r=>r.cacciatore).filter(Boolean))].sort();
 
-// ===== RENDER =====
+// ===== LOCALITÀ =====
+const LOCALITA = [...new Set([
+  ...MASCHI.filter(r=>r.loc&&r.loc!="—").map(r=>r.loc),
+  ...CERVI.filter(r=>r.loc&&r.loc!="—").map(r=>r.loc),
+  ...CAPRIOLI.filter(r=>r.loc&&r.loc!="—").map(r=>r.loc),
+  ...FEMMINE.filter(r=>r.loc&&r.loc!="—").map(r=>r.loc),
+])].sort();
+
 let currentFilter = null;
 
-function getStats(){
-  const f = currentFilter;
-  const cervo = f ? CERVO_DATA.filter(r => r.loc === f) : CERVO_DATA;
-  const femmine = f ? FEMMINE_DATA.filter(r => r.loc === f) : FEMMINE_DATA;
-  const tot = cervo.length + femmine.length;
-  const cacciatori = new Set();
-  [...cervo, ...femmine].forEach(r => cacciatori.add(r.cacciatore));
-  return { cervo: cervo.length, femmine: femmine.length, cacciatori: cacciatori.size, totale: tot };
+function getStats(f){
+  const fm = f ? MASCHI.filter(r=>r.loc===f) : MASCHI.filter(r=>r.cacciatore);
+  const fc = f ? CERVI.filter(r=>r.loc===f) : CERVI.filter(r=>r.cacciatore);
+  const fcap = f ? CAPRIOLI.filter(r=>r.loc===f) : CAPRIOLI.filter(r=>r.cacciatore);
+  const ff = f ? FEMMINE.filter(r=>r.loc===f) : FEMMINE.filter(r=>r.cacciatore);
+  return {
+    maschi: fm.length,
+    cervi: fc.length,
+    caprioli: fcap.length,
+    femmine: ff.length,
+    cacciatori: [...new Set([...fm,...fc,...fcap,...ff].map(r=>r.cacciatore).filter(Boolean))].length
+  };
 }
 
-function getLocations(){
-  const set = new Set();
-  CERVO_DATA.forEach(r => set.add(r.loc));
-  FEMMINE_DATA.forEach(r => set.add(r.loc));
-  return [...set].sort();
+function renderTable(title, data, quota, columns, emptyMsg){
+  const filtered = currentFilter ? data.filter(r=>r.loc===currentFilter||r.quota) : data;
+  let html = `<div class="section"><h2>${title}</h2><p class="quota">Quota: <strong>${quota}</strong> · Abbattuti: <strong>${data.filter(r=>r.cacciatore).length}</strong> · Rimasti: <strong>${quota - data.filter(r=>r.cacciatore).length}</strong></p></div>`;
+  if(filtered.filter(r=>r.cacciatore).length === 0){
+    html += `<p style="padding:0 16px;color:#888;font-size:0.85rem">${emptyMsg}</p>`;
+  }
+  html += `<table><thead><tr>${columns.map(c=>`<th>${c}</th>`).join("")}</tr></thead><tbody>`;
+  filtered.forEach(r => {
+    if(r.quota){
+      html += `<tr class="quota"><td colspan="${columns.length}" style="text-align:center">\u{1F514} Quota disponibile</td></tr>`;
+      return;
+    }
+    html += `<tr>${columns.map(c=>{
+      if(c==="N°") return `<td>${r.n}</td>`;
+      if(c==="Località") return `<td><strong>${r.loc||""}</strong></td>`;
+      if(c==="Data") return `<td>${r.data||""}</td>`;
+      if(c==="Ora") return `<td>${r.ora||""}</td>`;
+      if(c==="Cacciatore") return `<td><strong>${r.cacciatore||""}</strong></td>`;
+      if(c==="Accomp.") return `<td>${r.accompagnatore||""}</td>`;
+      if(c==="Peso") return `<td>${r.peso?r.peso+" kg":""}</td>`;
+      if(c==="Età") return `<td>${r.eta||""}</td>`;
+      if(c==="Luogo") return `<td>${r.luogo||""}</td>`;
+      if(c==="Sesso") return `<td>${r.sesso==="M"?"♂":"♀"}</td>`;
+      if(c==="Note") return `<td>${r.note||""}</td>`;
+      return `<td></td>`;
+    }).join("")}</tr>`;
+  });
+  html += `</tbody></table>`;
+  return html;
 }
 
-function getHunters(){
-  const map = {};
-  [...CERVO_DATA, ...FEMMINE_DATA].forEach(r => {
-    if(!map[r.cacciatore]) map[r.cacciatore] = {cervo:0, femmine:0, capretti:0};
-    if(r.note === "Capretto" || r.sesso === "M" && FEMMINE_DATA.includes(r)) map[r.cacciatore].capretti++;
-    else if(CERVO_DATA.includes(r)) map[r.cacciatore].cervo++;
-    else map[r.cacciatore].femmine++;
+function renderHunters(){
+  const hunterMap = {};
+  [...MASCHI,...CERVI,...CAPRIOLI,...FEMMINE].filter(r=>r.cacciatore).forEach(r => {
+    if(!hunterMap[r.cacciatore]) hunterMap[r.cacciatore] = {M:0,F:0,Cap:0};
+    if(r.sesso) {
+      if(r.sesso==="M" && !r.n) hunterMap[r.cacciatore].Cap++;
+      else if(r.sesso==="M") hunterMap[r.cacciatore].M++;
+      else hunterMap[r.cacciatore].F++;
+    } else {
+      // cervo/capriolo section
+      const src = MASCHI.includes(r)||CERVI.includes(r) ? "M" : null;
+      if(src) hunterMap[r.cacciatore].M++;
+      else hunterMap[r.cacciatore].F++;
+    }
   });
-  // Better counting
-  const m2 = {};
-  CERVO_DATA.forEach(r => { m2[r.cacciatore] = m2[r.cacciatore] || {cervo:0,femmine:0,capretti:0}; m2[r.cacciatore].cervo++; });
-  FEMMINE_DATA.forEach(r => {
-    m2[r.cacciatore] = m2[r.cacciatore] || {cervo:0,femmine:0,capretti:0};
-    if(r.note === "Capretto") m2[r.cacciatore].capretti++;
-    else m2[r.cacciatore].femmine++;
+  // Recalculate properly
+  Object.keys(hunterMap).forEach(k => { delete hunterMap[k]; });
+  [...MASCHI,...CERVI,...CAPRIOLI].filter(r=>r.cacciatore).forEach(r => {
+    if(!hunterMap[r.cacciatore]) hunterMap[r.cacciatore] = {M:0,F:0,Cap:0,Mc:0};
+    hunterMap[r.cacciatore].M++;
   });
-  return m2;
+  [...MASCHI,...CERVI,...CAPRIOLI].filter(r=>r.loc==="—").forEach(r => {
+    // skip quota rows
+  });
+  FEMMINE.filter(r=>r.cacciatore).forEach(r => {
+    if(!hunterMap[r.cacciatore]) hunterMap[r.cacciatore] = {M:0,F:0,Cap:0,Mc:0};
+    if(r.sesso==="M") hunterMap[r.cacciatore].Cap++;
+    else hunterMap[r.cacciatore].F++;
+  });
+
+  const sorted = Object.entries(hunterMap).sort((a,b) => (b[1].M+b[1].F+b[1].Cap+b[1].Mc) - (a[1].M+a[1].F+a[1].Cap+a[1].Mc));
+  let html = `<div class="section"><h2>👤 Classifica Cacciatori</h2><p class="quota">Totale: <strong>${sorted.length}</strong> cacciatori</p></div><div class="hunter-grid">`;
+  sorted.forEach(([name,stats]) => {
+    const tot = stats.M + stats.F + stats.Cap + (stats.Mc||0);
+    html += `<div class="hunter-card"><div class="name">${name}</div><div class="stats">`;
+    if(stats.M > 0) html += `<span>🦌 ${stats.M}</span>`;
+    if(stats.F > 0) html += `<span>♀ ${stats.F}</span>`;
+    if(stats.Cap > 0) html += `<span>🐐 ${stats.Cap}</span>`;
+    if(stats.Mc > 0) html += `<span>♂ ${stats.Mc}</span>`;
+    html += `<span style="background:#1a3c34;color:#fff">${tot}</span>`;
+    html += `</div></div>`;
+  });
+  html += `</div>`;
+  return html;
 }
 
 function render(){
-  const stats = getStats();
+  const s = getStats(currentFilter);
   const app = document.getElementById('app');
-  
-  let html = `
-  <div class="stats">
-    <div class="stat"><div class="num">${stats.cervo}</div><div class="label">Maschi</div></div>
-    <div class="stat"><div class="num">${stats.femmine}</div><div class="label">Femmine</div></div>
-    <div class="stat"><div class="num">${stats.cacciatori}</div><div class="label">Cacciatori</div></div>
-    <div class="stat"><div class="num">${stats.totale}</div><div class="label">Totale</div></div>
+
+  let html = `<div class="stats">
+    <div class="stat"><div class="num">${s.maschi}</div><div class="label">Maschi</div></div>
+    <div class="stat"><div class="num">${s.cervi+s.caprioli}</div><div class="label">Cervi/Capr.</div></div>
+    <div class="stat"><div class="num">${s.femmine}</div><div class="label">Femmine</div></div>
+    <div class="stat"><div class="num">${s.cacciatori}</div><div class="label">Cacciatori</div></div>
   </div>`;
 
-  // Filters
-  html += `<div class="filters">
-    <button class="filter-btn ${!currentFilter?'active':''}" onclick="setFilter(null)">Tutti</button>`;
-  getLocations().forEach(l => {
+  // Filter bar
+  html += `<div class="filter-bar">`;
+  html += `<button class="filter-btn all ${!currentFilter?'active':''}" onclick="setFilter(null)">Tutti</button>`;
+  LOCALITA.forEach(l => {
     html += `<button class="filter-btn ${currentFilter===l?'active':''}" onclick="setFilter('${l}')">${l}</button>`;
   });
   html += `</div>`;
 
-  // Cervo Maschio section
-  const cervo = currentFilter ? CERVO_DATA.filter(r => r.loc === currentFilter) : CERVO_DATA;
-  html += `<div class="section">
-    <div class="section-header"><h2>🦌 Cervo Maschio</h2><span class="count">${cervo.length}</span></div>
-    <div class="table-wrap">
-    <table><thead><tr><th>#</th><th>Località</th><th>Data</th><th>Ora</th><th>Cacciatore</th><th>Peso</th><th>Età</th><th>Luogo</th></tr></thead><tbody>`;
-  cervo.forEach(r => {
-    html += `<tr><td>${r.n}</td><td>${r.loc}</td><td>${r.data}</td><td>${r.ora}</td><td><strong>${r.cacciatore}</strong></td><td>${r.peso} kg</td><td>${r.eta}</td><td>${r.luogo}</td></tr>`;
-  });
-  html += `</tbody></table></div></div>`;
+  // Tables
+  const maschiReali = MASCHI.filter(r=>r.cacciatore).length;
+  html += renderTable("🦌 Cervo Maschio (1^ Classe Fusoni)", MASCHI, QUOTA_MASCHI, ["N°","Località","Data","Ora","Cacciatore","Peso","Età","Luogo"], "Nessun maschio abbattuto per questa località");
+  html += renderTable("🦌 Cervo (2^ Classe)", CERVI, QUOTA_CERVI, ["N°","Località","Data","Ora","Cacciatore","Accomp.","Peso","Età","Note","Luogo"], "Nessun cervo abbattuto per questa località");
+  html += renderTable("🐐 Caprioli", CAPRIOLI, QUOTA_CAPRIOLI, ["N°","Località","Data","Ora","Cacciatore","Peso","Età","Luogo"], "Nessun capriolo abbattuto per questa località");
+  html += renderTable("♀️ Femmine", FEMMINE, FEMMINE.length, ["N°","Sesso","Località","Data","Ora","Cacciatore","Accomp.","Peso","Luogo"], "Nessuna femmina abbattuta per questa località");
 
-  // Femmine section
-  const femmine = currentFilter ? FEMMINE_DATA.filter(r => r.loc === currentFilter) : FEMMINE_DATA;
-  html += `<div class="section">
-    <div class="section-header"><h2>🦌 Femmine & Capretti</h2><span class="count">${femmine.length}</span></div>
-    <div class="table-wrap">
-    <table><thead><tr><th>#</th><th>Sesso</th><th>Località</th><th>Data</th><th>Cacciatore</th><th>Note</th></tr></thead><tbody>`;
-  femmine.forEach(r => {
-    html += `<tr><td>${r.n}</td><td>${r.sesso === 'M' ? '♂️ Maschio' : '♀️ Femmina'}</td><td>${r.loc}</td><td>${r.data}</td><td><strong>${r.cacciatore}</strong></td><td>${r.note||'-'}</td></tr>`;
-  });
-  html += `</tbody></table></div></div>`;
+  // Quota complessiva
+  const totAbbattuti = maschiReali + CERVI.filter(r=>r.cacciatore).length + CAPRIOLI.filter(r=>r.cacciatore).length + FEMMINE.filter(r=>r.cacciatore).length;
+  const totQuota = QUOTA_MASCHI + QUOTA_CERVI + QUOTA_CAPRIOLI + FEMMINE.length;
+  const fullPct = Math.round(totAbbattuti/totQuota*100);
+  html += `<div class="section"><h2>📊 Totali Stagione</h2></div>
+  <div style="padding:0 16px">
+    <div style="background:#e8e4dc;border-radius:100px;height:24px;overflow:hidden;margin-bottom:8px">
+      <div style="background:linear-gradient(90deg,#1a3c34,#2d5a4a);width:${fullPct}%;height:100%;border-radius:100px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:0.75rem">${fullPct}%</div>
+    </div>
+    <p style="font-size:0.85rem;color:#555">Abbattuti <strong>${totAbbattuti}</strong> di <strong>${totQuota}</strong> capi totali</p>
+  </div>`;
 
   // Hunter ranking
-  const hunters = getHunters();
-  html += `<div class="section">
-    <div class="section-header"><h2>👤 Classifica Cacciatori</h2><span class="count">${Object.keys(hunters).length}</span></div>
-    <div class="hunter-grid">`;
-  Object.entries(hunters).sort((a,b) => (b[1].cervo+b[1].femmine) - (a[1].cervo+a[1].femmine)).forEach(([name,vals]) => {
-    const tot = vals.cervo + vals.femmine + vals.capretti;
-    html += `<div class="hunter-card"><div class="name">${name}</div><div class="count">${tot}</div><div class="label">${vals.cervo}M · ${vals.femmine}F · ${vals.capretti}C</div></div>`;
-  });
-  html += `</div></div>`;
+  html += renderHunters();
 
-  html += `<div class="footer-note">📊 Dati Stagione 2025/2026 · ${new Date().toLocaleDateString('it-IT')}</div>`;
   app.innerHTML = html;
 }
 
