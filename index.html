@@ -38,6 +38,15 @@ tr.quota{background:rgba(200,200,200,0.15);color:#aaa;font-style:italic}
 .hunter-card .name{font-weight:700;font-size:0.85rem}
 .hunter-card .stats{display:flex;gap:8px;margin:0;padding:6px 0 0;font-size:0.75rem;color:#555}
 .hunter-card .stats span{background:rgba(26,60,52,0.08);padding:2px 8px;border-radius:6px}
+/* Urgent notifications */
+.urgent-banner{display:flex;align-items:flex-start;gap:12px;background:linear-gradient(135deg,#fff3e0,#ffe0b2);border-left:5px solid #e65100;margin:16px;padding:14px 16px;border-radius:16px;box-shadow:0 4px 20px rgba(230,81,0,0.15);position:relative;animation:slideDown 0.4s ease}
+@keyframes slideDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+.urgent-icon{font-size:1.8rem;flex-shrink:0;margin-top:2px}
+.urgent-content{flex:1}
+.urgent-title{font-weight:800;font-size:0.85rem;color:#bf360c;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px}
+.urgent-text{font-size:0.9rem;color:#4e342e;line-height:1.5;white-space:pre-wrap}
+.urgent-close{background:none;border:none;font-size:1.2rem;color:#bf360c;cursor:pointer;padding:4px;opacity:0.7;flex-shrink:0}
+.urgent-close:hover{opacity:1}
 .footer{text-align:center;padding:32px 20px;color:#aaa;font-size:0.75rem;font-style:italic}
 @media(max-width:480px){
   .stats{grid-template-columns:1fr 1fr}
@@ -56,6 +65,16 @@ tr.quota{background:rgba(200,200,200,0.15);color:#aaa;font-style:italic}
   <div class="badge">Associazione Cacciatori</div>
 </div>
 
+<!-- URGENT NOTIFICATIONS -->
+<div id="urgentBanner" class="urgent-banner" style="display:none">
+  <div class="urgent-icon">📢</div>
+  <div class="urgent-content">
+    <div class="urgent-title">Comunicazione del Presidente</div>
+    <div class="urgent-text" id="urgentText"></div>
+  </div>
+  <button class="urgent-close" onclick="dismissUrgent()">✕</button>
+</div>
+
 <div id="app"></div>
 
 <div class="footer">
@@ -63,6 +82,16 @@ tr.quota{background:rgba(200,200,200,0.15);color:#aaa;font-style:italic}
 </div>
 
 <script>
+// ===== URGENT NOTIFICATIONS =====
+// Modify these values to show an urgent message from the president
+const URGENT_MESSAGE = ""; // Set this to a non-empty string to show a notification
+const URGENT_DATE = "26/05/2026";
+
+function dismissUrgent(){
+  const el = document.getElementById('urgentBanner');
+  if(el) { el.style.display = 'none'; }
+}
+
 // ===== DATA (from real Google Sheet) =====
 
 // Sezione 1: Cervo Maschio 1^ Classe Fusoni — Quota 7
@@ -218,6 +247,16 @@ function renderHunters(){
 }
 
 function render(){
+  // Show urgent notification if there's a message
+  const urgentEl = document.getElementById('urgentBanner');
+  const urgentText = document.getElementById('urgentText');
+  if(URGENT_MESSAGE && urgentEl && urgentText){
+    urgentEl.style.display = 'flex';
+    urgentText.textContent = URGENT_MESSAGE;
+  } else if(urgentEl){
+    urgentEl.style.display = 'none';
+  }
+
   const s = getStats(currentFilter);
   const app = document.getElementById('app');
 
@@ -254,9 +293,6 @@ function render(){
     </div>
     <p style="font-size:0.85rem;color:#555">Abbattuti <strong>${totAbbattuti}</strong> di <strong>${totQuota}</strong> capi totali</p>
   </div>`;
-
-  // Hunter ranking
-  html += renderHunters();
 
   app.innerHTML = html;
 }
