@@ -84,7 +84,7 @@ tr.quota{background:rgba(200,200,200,0.15);color:#aaa;font-style:italic}
 <script>
 // ===== URGENT NOTIFICATIONS =====
 // Modify these values to show an urgent message from the president
-const URGENT_MESSAGE = ""; // Set this to a non-empty string to show a notification
+const URGENT_MESSAGE = "🗓️ Riunione Associazione Cacciatori — 2 Luglio 2026, ore 20:30 presso la sede. Partecipazione importante!";
 const URGENT_DATE = "26/05/2026";
 
 function dismissUrgent(){
@@ -261,10 +261,26 @@ function render(){
   const app = document.getElementById('app');
 
   let html = `<div class="stats">
-    <div class="stat"><div class="num">${s.maschi}</div><div class="label">Maschi</div></div>
-    <div class="stat"><div class="num">${s.cervi+s.caprioli}</div><div class="label">Cervi/Capr.</div></div>
-    <div class="stat"><div class="num">${s.femmine}</div><div class="label">Femmine</div></div>
-    <div class="stat"><div class="num">${s.cacciatori}</div><div class="label">Cacciatori</div></div>
+    <div class="stat"><span class="num">${s.maschi + s.maschi2 + s.caprioli + s.femmine}</span><span class="lbl">Totali</span></div>
+    <div class="stat"><span class="num">29</span><span class="lbl">Quota</span></div>
+    <div class="stat"><span class="num">${29 - (s.maschi + s.maschi2 + s.caprioli + s.femmine)}</span><span class="lbl">Rimasti</span></div>
+    <div class="stat"><span class="num">${s.cacciatori}</span><span class="lbl">Cacciatori</span></div>
+  </div>`;
+
+  // Totali Stagione — always on top
+  const totAbbattuti = s.maschi + s.maschi2 + s.caprioli + s.femmine;
+  const totQuota = 7 + 8 + 8 + 14; // fixed quotas
+  const pctTot = Math.round((totAbbattuti / totQuota) * 100);
+  function pctColor(v){ return v > 80 ? '#d9534f' : v > 50 ? '#f0ad4e' : '#5cb85c'; }
+  html += `<div class="totali-section">
+    <div class="totali-title">📊 Totali Stagione</div>
+    <div class="totali-grid">
+      <div class="totali-item"><span class="tl">🦌 Maschi</span><span class="tr">${s.maschi}<small>/7</small></span><div class="bar"><div class="fill" style="width:${Math.round((s.maschi/7)*100)}%;background:${pctColor((s.maschi/7)*100)}"></div></div></div>
+      <div class="totali-item"><span class="tl">🦌 Cervo 2^</span><span class="tr">${s.maschi2}<small>/8</small></span><div class="bar"><div class="fill" style="width:${Math.round((s.maschi2/8)*100)}%;background:${pctColor((s.maschi2/8)*100)}"></div></div></div>
+      <div class="totali-item"><span class="tl">🐐 Caprioli</span><span class="tr">${s.caprioli}<small>/8</small></span><div class="bar"><div class="fill" style="width:${Math.round((s.caprioli/8)*100)}%;background:${pctColor((s.caprioli/8)*100)}"></div></div></div>
+      <div class="totali-item"><span class="tl">♀️ Femmine</span><span class="tr">${s.femmine}<small>/14</small></span><div class="bar"><div class="fill" style="width:${Math.round((s.femmine/14)*100)}%;background:${pctColor((s.femmine/14)*100)}"></div></div></div>
+    </div>
+    <div class="totali-tot"><strong>${totAbbattuti} / ${totQuota}</strong> capi totali (${pctTot}%)<div class="bar" style="margin:6px 0 0"><div class="fill" style="width:${pctTot}%;background:${pctColor(pctTot)}"></div></div></div>
   </div>`;
 
   // Filter bar
@@ -281,18 +297,6 @@ function render(){
   html += renderTable("🦌 Cervo (2^ Classe)", CERVI, QUOTA_CERVI, ["N°","Località","Data","Ora","Cacciatore","Accomp.","Peso","Età","Note","Luogo"], "Nessun cervo abbattuto per questa località");
   html += renderTable("🐐 Caprioli", CAPRIOLI, QUOTA_CAPRIOLI, ["N°","Località","Data","Ora","Cacciatore","Peso","Età","Luogo"], "Nessun capriolo abbattuto per questa località");
   html += renderTable("♀️ Femmine", FEMMINE, FEMMINE.length, ["N°","Sesso","Località","Data","Ora","Cacciatore","Accomp.","Peso","Luogo"], "Nessuna femmina abbattuta per questa località");
-
-  // Quota complessiva
-  const totAbbattuti = maschiReali + CERVI.filter(r=>r.cacciatore).length + CAPRIOLI.filter(r=>r.cacciatore).length + FEMMINE.filter(r=>r.cacciatore).length;
-  const totQuota = QUOTA_MASCHI + QUOTA_CERVI + QUOTA_CAPRIOLI + FEMMINE.length;
-  const fullPct = Math.round(totAbbattuti/totQuota*100);
-  html += `<div class="section"><h2>📊 Totali Stagione</h2></div>
-  <div style="padding:0 16px">
-    <div style="background:#e8e4dc;border-radius:100px;height:24px;overflow:hidden;margin-bottom:8px">
-      <div style="background:linear-gradient(90deg,#1a3c34,#2d5a4a);width:${fullPct}%;height:100%;border-radius:100px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:0.75rem">${fullPct}%</div>
-    </div>
-    <p style="font-size:0.85rem;color:#555">Abbattuti <strong>${totAbbattuti}</strong> di <strong>${totQuota}</strong> capi totali</p>
-  </div>`;
 
   app.innerHTML = html;
 }
