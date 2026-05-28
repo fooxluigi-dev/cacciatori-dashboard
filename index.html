@@ -3,449 +3,294 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Associazione Cacciatori — Dashboard</title>
+<title>📊 Cacciatori — Dashboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --green:#2d5a27;
-  --green-light:#3a7a32;
-  --green-pale:#e8f3e6;
-  --brown:#5c3a1e;
-  --brown-light:#8b6914;
-  --cream:#faf4eb;
-  --warm:#f0e4d0;
-  --dark:#1a1a1a;
-  --gold:#c9a96e;
-  --red:#b83a3a;
-  --orange:#d4872f;
-  --card:#ffffff;
-  --shadow:0 4px 20px rgba(0,0,0,0.08);
-  --radius:16px;
-  --radius-sm:10px;
-}
 body{
   font-family:'Inter',sans-serif;
-  background:var(--cream);
-  color:var(--dark);
-  padding-bottom:80px;
+  background:#f5f2eb;
+  color:#2d2d2d;
   min-height:100vh;
+  padding-bottom:80px;
 }
-h1,h2,h3{font-family:'Playfair Display',serif;font-weight:600}
-/* HERO */
+/* Hero */
 .hero{
-  background:linear-gradient(135deg,var(--green) 0%,#1a3a15 100%);
+  background:linear-gradient(135deg,#1a3c34,#2d5a4a);
   color:#fff;
-  padding:50px 20px 30px;
+  padding:48px 20px 36px;
   text-align:center;
   position:relative;
   overflow:hidden;
 }
-.hero::before{
-  content:'🦌';
-  position:absolute;
-  font-size:8rem;
-  right:-10px;
-  bottom:-20px;
-  opacity:0.08;
+.hero h1{font-size:1.8rem;font-weight:800;letter-spacing:-0.5px}
+.hero .sub{font-size:0.85rem;opacity:0.8;margin-top:4px}
+.hero .badge{
+  display:inline-block;
+  margin-top:12px;
+  padding:6px 16px;
+  background:rgba(255,255,255,0.1);
+  border-radius:100px;
+  font-size:0.75rem;
+  backdrop-filter:blur(4px);
 }
-.hero h1{font-size:2rem;letter-spacing:-0.5px}
-.hero .sub{font-size:0.9rem;color:var(--gold);margin-top:4px;letter-spacing:1px;text-transform:uppercase}
-.hero .badge{display:inline-block;margin-top:12px;padding:6px 16px;background:rgba(255,255,255,0.1);border-radius:100px;font-size:0.8rem;backdrop-filter:blur(8px)}
-/* STATS BAR */
-.stats-row{
+/* Stats */
+.stats{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px;
+  grid-template-columns:1fr 1fr 1fr 1fr;
+  gap:8px;
   padding:16px;
-  margin:-30px 16px 0;
-  position:relative;
-  z-index:2;
+  margin:-24px 12px 0;
 }
-.stat-card{
-  background:var(--card);
-  border-radius:var(--radius);
+.stat{
+  background:#fff;
+  border-radius:16px;
   padding:14px 8px;
   text-align:center;
-  box-shadow:var(--shadow);
+  box-shadow:0 4px 20px rgba(0,0,0,0.06);
 }
-.stat-card .num{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:600;color:var(--green)}
-.stat-card .label{font-size:0.65rem;color:#888;text-transform:uppercase;letter-spacing:0.3px;margin-top:2px}
-/* SECTION */
-.section{margin:24px 16px 0}
-.section-title{
-  font-size:1.2rem;
-  color:var(--green);
-  margin-bottom:2px;
-}
-.section-sub{
-  font-size:0.8rem;
-  color:#888;
-  margin-bottom:14px;
-  font-weight:400;
-}
-.section-title .icon{font-size:1.1rem;margin-right:6px}
-/* FILTER BAR */
-.filter-bar{
+.stat .num{font-size:1.5rem;font-weight:800;color:#1a3c34}
+.stat .label{font-size:0.6rem;text-transform:uppercase;letter-spacing:0.3px;color:#888;margin-top:2px}
+/* Filters */
+.filters{
   display:flex;
-  gap:8px;
-  padding:12px 0;
+  gap:6px;
+  padding:12px 16px 4px;
   overflow-x:auto;
   scrollbar-width:none;
-  -webkit-overflow-scrolling:touch;
 }
-.filter-bar::-webkit-scrollbar{display:none}
+.filters::-webkit-scrollbar{display:none}
 .filter-btn{
   flex-shrink:0;
   padding:7px 16px;
   border-radius:100px;
-  border:1.5px solid var(--gold);
-  background:transparent;
-  color:var(--gold);
+  border:1.5px solid #ddd;
+  background:#fff;
   font-size:0.8rem;
   font-weight:500;
   cursor:pointer;
   transition:all 0.2s;
-  font-family:'Inter',sans-serif;
+  color:#555;
 }
-.filter-btn.active{background:var(--gold);color:#fff;box-shadow:0 3px 10px rgba(201,169,110,0.3)}
-/* TABLE */
-.table-wrap{
-  background:var(--card);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  overflow-x:auto;
-  -webkit-overflow-scrolling:touch;
+.filter-btn.active{background:#1a3c34;color:#fff;border-color:#1a3c34}
+.filter-btn:hover:not(.active){background:#f0f0f0}
+/* Sections */
+.section{
+  margin:16px;
+  background:#fff;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 2px 12px rgba(0,0,0,0.04);
 }
-table{width:100%;border-collapse:collapse;font-size:0.82rem;min-width:500px}
-th{background:var(--green);color:#fff;padding:10px 12px;text-align:left;font-weight:500;white-space:nowrap;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.3px}
-th:first-child{border-radius:var(--radius-sm) 0 0 0}
-th:last-child{border-radius:0 var(--radius-sm) 0 0}
-td{padding:9px 12px;border-bottom:1px solid #f0ebe4;white-space:nowrap}
+.section-header{
+  padding:16px 18px 12px;
+  border-bottom:1px solid #f0eee8;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.section-header h2{font-size:1rem;font-weight:700}
+.section-header .count{
+  font-size:0.75rem;
+  color:#888;
+  background:#f5f2eb;
+  padding:3px 10px;
+  border-radius:100px;
+}
+/* Table */
+.table-wrap{overflow-x:auto;padding:0 0 4px}
+table{width:100%;border-collapse:collapse;font-size:0.78rem;min-width:500px}
+th{
+  text-align:left;
+  padding:10px 12px;
+  font-weight:600;
+  color:#888;
+  font-size:0.7rem;
+  text-transform:uppercase;
+  letter-spacing:0.3px;
+  background:#faf8f4;
+  border-bottom:1px solid #f0eee8;
+  white-space:nowrap;
+  position:sticky;
+  top:0;
+}
+td{padding:10px 12px;border-bottom:1px solid #f5f2eb;white-space:nowrap}
 tr:last-child td{border-bottom:none}
-tr:nth-child(even){background:#faf7f2}
-tr:hover{background:var(--green-pale)}
-/* QUOTA BADGE */
-.quota{border-radius:100px;font-size:0.7rem;font-weight:600;padding:2px 10px;display:inline-block}
-.quota.ok{background:#e8f3e6;color:var(--green)}
-.quota.warn{background:#fff3e0;color:var(--orange)}
-.quota.full{background:#fde8e8;color:var(--red)}
-/* HUNTERS GRID */
-.hunters-grid{
+tr:hover td{background:#faf8f4}
+/* Hunter cards */
+.hunter-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(100px,1fr));
+  grid-template-columns:1fr 1fr;
   gap:8px;
-  margin-top:12px;
+  padding:12px;
 }
 .hunter-card{
-  background:var(--card);
-  border-radius:var(--radius-sm);
-  padding:10px;
+  background:#faf8f4;
+  border-radius:12px;
+  padding:14px;
   text-align:center;
-  box-shadow:var(--shadow);
 }
-.hunter-card .name{font-size:0.72rem;font-weight:600;color:var(--green)}
-.hunter-card .count{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--dark);margin-top:2px}
-.hunter-card .sub-label{font-size:0.6rem;color:#999;text-transform:uppercase}
-/* SEX BOX */
-.sex-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
-.sex-box{padding:14px;border-radius:var(--radius-sm);text-align:center;box-shadow:var(--shadow)}
-.sex-box.m{background:linear-gradient(135deg,#e3eef5,#d4e3ed)}
-.sex-box.f{background:linear-gradient(135deg,#f5e3e9,#edd4de)}
-.sex-box .emoji{font-size:1.5rem}
-.sex-box .num{font-family:'Playfair Display',serif;font-size:1.8rem;margin:2px 0}
-.sex-box .label{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.5px;color:#888}
-/* FOOTER */
-.footer{text-align:center;padding:40px 20px 20px;color:#aaa;font-size:0.75rem;font-style:italic}
-.footer .upd{color:var(--gold);font-style:normal}
-/* EMPTY */
-.empty{text-align:center;padding:40px 20px;color:#aaa;font-size:0.9rem}
-/* LOADING */
-.loading{text-align:center;padding:60px 20px}
-.loading .spinner{font-size:2.5rem;animation:pulse 1s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.hunter-card .name{font-weight:600;font-size:0.9rem}
+.hunter-card .count{font-size:1.3rem;font-weight:800;color:#1a3c34;margin-top:4px}
+.hunter-card .label{font-size:0.65rem;color:#888;text-transform:uppercase;letter-spacing:0.3px}
+/* Footer info */
+.footer-note{
+  text-align:center;
+  padding:20px;
+  font-size:0.75rem;
+  color:#aaa;
+  font-style:italic;
+}
+@media(max-width:480px){
+  .stats{grid-template-columns:1fr 1fr;gap:6px}
+  .hunter-grid{grid-template-columns:1fr 1fr}
+  table{font-size:0.72rem}
+}
 </style>
 </head>
 <body>
 
 <div class="hero">
-  <h1>🌲 Cacciatori</h1>
-  <p class="sub">Associazione · Dashboard Caricamenti</p>
-  <div class="badge">🦌 Stagione 2025-2026</div>
+  <h1>🦌 Cacciatori</h1>
+  <p class="sub">Associazione Caccia · Stagione 2025/2026</p>
+  <span class="badge">📊 Dashboard</span>
 </div>
 
-<div class="stats-row" id="statsRow"></div>
-
-<div id="app">
-  <div class="loading">
-    <div class="spinner">🦌</div>
-    <p style="margin-top:12px;color:#888">Caricamento dati...</p>
-  </div>
-</div>
-
-<div class="footer">
-  Dati aggiornati dal Foglio Google · <span class="upd" id="lastUpdate"></span>
-</div>
+<div id="app"></div>
 
 <script>
-// ===== DATA LOADING =====
-const CORS_PROXY = "https://api.allorigins.win/raw?url=";
-// Try multiple CSV sources for reliability
-const SHEET_CSV = "https://docs.google.com/spreadsheets/d/1SSWMcFqKAvcke1YG1gJeLiymNLQO8IPtPxnWUxz2t_8/export?format=csv";
-const SHEET_CSV_BACKUP = "https://docs.google.com/spreadsheets/d/1SSWMcFqKAvcke1YG1gJeLiymNLQO8IPtPxnWUxz2t_8/gviz/tq?tqx=out:csv";
-let csvUrlAttempt = 0;
+// ===== HARDCODED DATA (from Google Sheet fetch) =====
+// This will be replaced with live data once the sheet is published
+const CERVO_DATA = [
+  {n:1, loc:"La Mont", data:"20/08/2025", ora:"10:00", cacciatore:"2163", peso:40, eta:1, luogo:"Cella sede"},
+  {n:2, loc:"La Mont", data:"31/08/2025", ora:"6:30", cacciatore:"Case Claudio", peso:38, eta:1, luogo:"Cella sede"},
+  {n:3, loc:"La Mont", data:"02/09/2025", ora:"19:00", cacciatore:"Piva Mattia", peso:28, eta:0, luogo:"Cella sede"},
+  {n:4, loc:"Turbai", data:"07/09/2025", ora:"7:05", cacciatore:"Bettiolo Andrea", peso:38, eta:1, luogo:"Cella Cencenighe"},
+  {n:5, loc:"Turbai", data:"25/10/2025", ora:"8:00", cacciatore:"Dalla Francesca", peso:82, eta:"4-5", luogo:"Caneva"},
+  {n:6, loc:"La Mont", data:"16/11/2025", ora:"7:15", cacciatore:"Soc. Ursa Maior", peso:50, eta:2, luogo:"Cella sede"},
+  {n:7, loc:"La Mont", data:"28/12/2025", ora:"14:00", cacciatore:"Ruzza Marco", peso:36, eta:1, luogo:"Cella sede"},
+];
 
-let rawData = null;
-let currentFilter = null;
-
-let lastOkUrl = SHEET_CSV;
-let useProxy = false;
-async function loadData(){
-  const app = document.getElementById('app');
-  try{
-    const url = (csvUrlAttempt % 2 === 0) ? SHEET_CSV : SHEET_CSV_BACKUP;
-    const finalUrl = useProxy ? CORS_PROXY + encodeURIComponent(url + '&' + Date.now()) : url + '&' + Date.now();
-    const r = await fetch(finalUrl);
-    if(!r.ok) throw new Error('HTTP ' + r.status);
-    const csv = await r.text();
-    if(csv.trim().startsWith('<') && csv.includes('<html')) throw new Error('HTML returned');
-    if(csv.trim().startsWith('<!')) throw new Error('HTML returned');
-    if(csv.trim().length < 50) throw new Error('Too short');
-    rawData = parseCSV(csv);
-    lastOkUrl = url;
-    csvUrlAttempt = 0;
-    render();
-  }catch(e){
-    csvUrlAttempt++;
-    if(csvUrlAttempt < 6){
-      if(csvUrlAttempt === 3) { useProxy = true; }
-      setTimeout(loadData, 800);
-    } else {
-      app.innerHTML = `<div class="empty-state">⏳ Caricamento dati...<br><small>Riprovo tra 20 minuti</small></div>`;
-      console.log('CSV fetch failed:', e.message);
-    }
-  }
-}
-
-function parseCSV(csv){
-  // Parse CSV properly handling quoted fields
-  const lines = [];
-  let current = [];
-  let field = '';
-  let inQuotes = false;
-  for(let i=0;i<csv.length;i++){
-    const ch = csv[i];
-    if(ch === '"'){ inQuotes = !inQuotes; continue; }
-    if(ch === ',' && !inQuotes){ current.push(field.trim()); field = ''; continue; }
-    if((ch === '\n' || ch === '\r') && !inQuotes){
-      if(field.trim() || current.length){ current.push(field.trim()); lines.push(current); }
-      field = '';
-      current = [];
-      if(ch === '\r' && csv[i+1] === '\n') i++;
-      continue;
-    }
-    field += ch;
-  }
-  if(field.trim() || current.length){ current.push(field.trim()); lines.push(current); }
-  return lines;
-}
-
-// ===== PARSE SECTIONS =====
-function parseSections(data){
-  const cervi = [];
-  const femmine = [];
-  let section = null;
-
-  for(let i=0;i<data.length;i++){
-    const line = data[i];
-    const first = (line[0]||'').toLowerCase().trim();
-
-    // Detect section headers
-    if(first.includes('cervo maschio') || first.includes('fusoni')){
-      section = 'cervi';
-      continue;
-    }
-    if(first === 'sesso'){
-      section = 'femmine';
-      continue;
-    }
-
-    if(section === 'cervi'){
-      // Column layout: località, (empty), data, ora, cacciatore, ospite, accompagnatore, peso, età, luogo
-      const localita = line[1] || '';
-      const data = line[3] || '';
-      const ora = line[4] || '';
-      const cacciatore = line[5] || '';
-      const peso = line[8] || '';
-      const eta = line[9] || '';
-      if(localita && cacciatore && data) {
-        cervix{ localita, data, ora, cacciatore, peso, eta };
-        cervi.push(c);
-      }
-    }
-    if(section === 'femmine'){
-      const sesso = (line[1]||'').trim();
-      const localita = line[2] || '';
-      const data = line[3] || '';
-      const cacciatore = line[5] || '';
-      const peso = line[8] || '';
-      if(localita && cacciatore && data && (sesso==='F'||sesso==='M')) {
-        femmine.push({ sesso, localita, data, cacciatore, peso });
-      }
-    }
-  }
-
-  return { cervi, femmine };
-}
+const FEMMINE_DATA = [
+  {n:1, sesso:"F", loc:"La Mont", data:"09/08/2025", cacciatore:"Ruzza Marco", peso:null},
+  {n:2, sesso:"F", loc:"La Mont", data:"18/08/2025", cacciatore:"Bettiolo Andrea", peso:null},
+  {n:3, sesso:"M", loc:"La Mont", data:"23/08/2025", cacciatore:"Case Claudio", peso:null, note:"Capretto"},
+  {n:4, sesso:"F", loc:"Gares", data:"22/09/2025", cacciatore:"Grespan Renato", peso:null},
+  {n:5, sesso:"F", loc:"La Mont", data:"29/09/2025", cacciatore:"Dal Bianco Gabriele", peso:null},
+  {n:6, sesso:"F", loc:"La Mont", data:"30/09/2025", cacciatore:"Soppelsa Elia", peso:null},
+  {n:7, sesso:"F", loc:"La Mont", data:"04/10/2025", cacciatore:"Chiappetti Gianluca", peso:null},
+  {n:8, sesso:"M", loc:"Turbai", data:"09/10/2025", cacciatore:"Ruzza Marco", peso:null, note:"Capretto"},
+  {n:9, sesso:"F", loc:"Turbai", data:"09/10/2025", cacciatore:"Piva Mattia", peso:null},
+  {n:10, sesso:"M", loc:"Gares", data:"12/10/2025", cacciatore:"Grespan Renato", peso:null, note:"Capretto"},
+  {n:11, sesso:"F", loc:"La Mont", data:"14/10/2025", cacciatore:"Bettiolo Andrea", peso:null},
+  {n:12, sesso:"F", loc:"Turbai", data:"08/11/2025", cacciatore:"Bettiolo Andrea", peso:null},
+  {n:13, sesso:"F", loc:"Gares", data:"11/01/2026", cacciatore:"Grespan Renato", peso:null},
+  {n:14, sesso:"F", loc:"La Mont", data:"18/01/2026", cacciatore:"Piva Mattia", peso:null},
+];
 
 // ===== RENDER =====
-function render(){
-  const { cervi, femmine } = parseSections(rawData);
-  const totalCervi = cervi.length;
-  const totalFemmine = femmine.length;
-  const totalAll = totalCervi + totalFemmine;
+let currentFilter = null;
 
-  // Hunter stats
-  const hunterCounts = {};
-  [...cervi, ...femmine].forEach(h => {
-    const name = h.cacciatore.trim();
-    if(!name) return;
-    if(!hunterCounts[name]) hunterCounts[name] = { cervi:0, femmine:0, total:0 };
-    if(cervi.includes(h)) hunterCounts[name].cervi++;
-    else hunterCounts[name].femmine++;
-    hunterCounts[name].total++;
+function getStats(){
+  const f = currentFilter;
+  const cervo = f ? CERVO_DATA.filter(r => r.loc === f) : CERVO_DATA;
+  const femmine = f ? FEMMINE_DATA.filter(r => r.loc === f) : FEMMINE_DATA;
+  const tot = cervo.length + femmine.length;
+  const cacciatori = new Set();
+  [...cervo, ...femmine].forEach(r => cacciatori.add(r.cacciatore));
+  return { cervo: cervo.length, femmine: femmine.length, cacciatori: cacciatori.size, totale: tot };
+}
+
+function getLocations(){
+  const set = new Set();
+  CERVO_DATA.forEach(r => set.add(r.loc));
+  FEMMINE_DATA.forEach(r => set.add(r.loc));
+  return [...set].sort();
+}
+
+function getHunters(){
+  const map = {};
+  [...CERVO_DATA, ...FEMMINE_DATA].forEach(r => {
+    if(!map[r.cacciatore]) map[r.cacciatore] = {cervo:0, femmine:0, capretti:0};
+    if(r.note === "Capretto" || r.sesso === "M" && FEMMINE_DATA.includes(r)) map[r.cacciatore].capretti++;
+    else if(CERVO_DATA.includes(r)) map[r.cacciatore].cervo++;
+    else map[r.cacciatore].femmine++;
   });
-  const sortedHunters = Object.entries(hunterCounts).sort((a,b)=>b[1].total-a[1].total);
+  // Better counting
+  const m2 = {};
+  CERVO_DATA.forEach(r => { m2[r.cacciatore] = m2[r.cacciatore] || {cervo:0,femmine:0,capretti:0}; m2[r.cacciatore].cervo++; });
+  FEMMINE_DATA.forEach(r => {
+    m2[r.cacciatore] = m2[r.cacciatore] || {cervo:0,femmine:0,capretti:0};
+    if(r.note === "Capretto") m2[r.cacciatore].capretti++;
+    else m2[r.cacciatore].femmine++;
+  });
+  return m2;
+}
 
-  // Stats row
-  document.getElementById('statsRow').innerHTML = `
-    <div class="stat-card"><div class="num">${totalCervi}</div><div class="label">🦌 Cervi</div></div>
-    <div class="stat-card"><div class="num">${totalFemmine}</div><div class="label">🦌 Femmine</div></div>
-    <div class="stat-card"><div class="num">${totalAll}</div><div class="label">📊 Totale</div></div>
-    <div class="stat-card"><div class="num">${sortedHunters.length}</div><div class="label">👤 Cacciatori</div></div>
-  `;
-
-  // Build app
+function render(){
+  const stats = getStats();
   const app = document.getElementById('app');
-  let html = '';
+  
+  let html = `
+  <div class="stats">
+    <div class="stat"><div class="num">${stats.cervo}</div><div class="label">Maschi</div></div>
+    <div class="stat"><div class="num">${stats.femmine}</div><div class="label">Femmine</div></div>
+    <div class="stat"><div class="num">${stats.cacciatori}</div><div class="label">Cacciatori</div></div>
+    <div class="stat"><div class="num">${stats.totale}</div><div class="label">Totale</div></div>
+  </div>`;
 
-  // ===== CERVO MASCHIO SECTION =====
-  html += `<div class="section"><h2 class="section-title"><span class="icon">🦌</span>Cervo Maschio</h2><p class="section-sub">Fusoni · I^ Classe</p>`;
-  html += renderFilterBar('cervi');
-  html += renderTable('cervi', cervi);
+  // Filters
+  html += `<div class="filters">
+    <button class="filter-btn ${!currentFilter?'active':''}" onclick="setFilter(null)">Tutti</button>`;
+  getLocations().forEach(l => {
+    html += `<button class="filter-btn ${currentFilter===l?'active':''}" onclick="setFilter('${l}')">${l}</button>`;
+  });
   html += `</div>`;
 
-  // ===== FEMMINE SECTION =====
-  html += `<div class="section" style="margin-top:32px"><h2 class="section-title"><span class="icon">🦌</span>Femmine / Capretti</h2><p class="section-sub">Sesso F/M</p>`;
+  // Cervo Maschio section
+  const cervo = currentFilter ? CERVO_DATA.filter(r => r.loc === currentFilter) : CERVO_DATA;
+  html += `<div class="section">
+    <div class="section-header"><h2>🦌 Cervo Maschio</h2><span class="count">${cervo.length}</span></div>
+    <div class="table-wrap">
+    <table><thead><tr><th>#</th><th>Località</th><th>Data</th><th>Ora</th><th>Cacciatore</th><th>Peso</th><th>Età</th><th>Luogo</th></tr></thead><tbody>`;
+  cervo.forEach(r => {
+    html += `<tr><td>${r.n}</td><td>${r.loc}</td><td>${r.data}</td><td>${r.ora}</td><td><strong>${r.cacciatore}</strong></td><td>${r.peso} kg</td><td>${r.eta}</td><td>${r.luogo}</td></tr>`;
+  });
+  html += `</tbody></table></div></div>`;
 
-  // Sex breakdown
-  const mCount = femmine.filter(f=>f.sesso==='M').length;
-  const fCount = femmine.filter(f=>f.sesso==='F').length;
-  html += `<div class="sex-row"><div class="sex-box m"><div class="emoji">🦌</div><div class="num">${mCount}</div><div class="label">Maschio</div></div><div class="sex-box f"><div class="emoji">🦌</div><div class="num">${fCount}</div><div class="label">Femmina</div></div></div>`;
+  // Femmine section
+  const femmine = currentFilter ? FEMMINE_DATA.filter(r => r.loc === currentFilter) : FEMMINE_DATA;
+  html += `<div class="section">
+    <div class="section-header"><h2>🦌 Femmine & Capretti</h2><span class="count">${femmine.length}</span></div>
+    <div class="table-wrap">
+    <table><thead><tr><th>#</th><th>Sesso</th><th>Località</th><th>Data</th><th>Cacciatore</th><th>Note</th></tr></thead><tbody>`;
+  femmine.forEach(r => {
+    html += `<tr><td>${r.n}</td><td>${r.sesso === 'M' ? '♂️ Maschio' : '♀️ Femmina'}</td><td>${r.loc}</td><td>${r.data}</td><td><strong>${r.cacciatore}</strong></td><td>${r.note||'-'}</td></tr>`;
+  });
+  html += `</tbody></table></div></div>`;
 
-  html += renderFilterBar('femmine');
-  html += renderTable('femmine', femmine);
-  html += `</div>`;
-
-  // ===== HUNTERS SECTION =====
-  html += `<div class="section" style="margin-top:32px"><h2 class="section-title"><span class="icon">👤</span>Cacciatori</h2><p class="section-sub">Classifica per abbattimenti</p>
-  <div class="hunters-grid">`;
-  sortedHunters.forEach(([name, stats]) => {
-    html += `<div class="hunter-card"><div class="name">${name}</div><div class="count">${stats.total}</div><div class="sub-label">🦌 ${stats.cervi} ♂ ${stats.femmine} ♀</div></div>`;
+  // Hunter ranking
+  const hunters = getHunters();
+  html += `<div class="section">
+    <div class="section-header"><h2>👤 Classifica Cacciatori</h2><span class="count">${Object.keys(hunters).length}</span></div>
+    <div class="hunter-grid">`;
+  Object.entries(hunters).sort((a,b) => (b[1].cervo+b[1].femmine) - (a[1].cervo+a[1].femmine)).forEach(([name,vals]) => {
+    const tot = vals.cervo + vals.femmine + vals.capretti;
+    html += `<div class="hunter-card"><div class="name">${name}</div><div class="count">${tot}</div><div class="label">${vals.cervo}M · ${vals.femmine}F · ${vals.capretti}C</div></div>`;
   });
   html += `</div></div>`;
 
-  // Last update
-  document.getElementById('lastUpdate').textContent = `Ultimo aggiornamento: ${new Date().toLocaleString('it-IT')}`;
-
+  html += `<div class="footer-note">📊 Dati Stagione 2025/2026 · ${new Date().toLocaleDateString('it-IT')}</div>`;
   app.innerHTML = html;
-
-  // Filter buttons
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.onclick = () => {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentFilter = btn.dataset.filter;
-      applyFilters();
-    };
-  });
 }
 
-function renderFilterBar(section){
-  // Get unique locations
-  const locations = new Set();
-  (section==='cervi' ? getCervi() : getFemmine()).forEach(h => {
-    if(h.localita) locations.add(h.localita);
-  });
-  const sorted = [...locations].sort();
-  if(sorted.length === 0) return '';
-
-  let html = `<div class="filter-bar"><button class="filter-btn active" data-filter="all-${section}">📍 Tutte</button>`;
-  sorted.forEach(l => {
-    html += `<button class="filter-btn" data-filter="loc:${l}|${section}">${l}</button>`;
-  });
-  html += `</div>`;
-  return html;
+function setFilter(loc){
+  currentFilter = loc;
+  render();
 }
 
-function getCervi(){
-  const { cervi } = parseSections(rawData);
-  return cervi;
-}
-function getFemmine(){
-  const { femmine } = parseSections(rawData);
-  return femmine;
-}
-
-function applyFilters(){
-  const { cervi, femmine } = parseSections(rawData);
-  const active = document.querySelector('.filter-btn.active');
-  if(!active) return;
-  const filter = active.dataset.filter;
-  const section = filter.split('|')[1] || (filter.includes('cervi') ? 'cervi' : 'femmine');
-
-  let loc = null;
-  if(filter.startsWith('loc:')) loc = filter.split('|')[0].replace('loc:','');
-
-  if(section === 'cervi'){
-    const filtered = loc ? cervi.filter(h => h.localita === loc) : cervi;
-    const tableWrap = document.querySelectorAll('.table-wrap')[0];
-    if(tableWrap) tableWrap.outerHTML = renderTable('cervi', filtered);
-  } else {
-    const filtered = loc ? femmine.filter(h => h.localita === loc) : femmine;
-    const tableWrap = document.querySelectorAll('.table-wrap')[1];
-    if(tableWrap) tableWrap.outerHTML = renderTable('femmine', filtered);
-  }
-}
-
-function renderTable(section, items){
-  if(items.length === 0) return `<div class="table-wrap" style="padding:20px;text-align:center;color:#aaa;">Nessun dato per questo filtro</div>`;
-  let html = `<div class="table-wrap"><table><thead><tr>`;
-
-  if(section === 'cervi'){
-    html += `<th>Località</th><th>Data</th><th>Ora</th><th>Cacciatore</th><th>Peso</th><th>Età</th>`;
-  } else {
-    html += `<th>Sesso</th><th>Località</th><th>Data</th><th>Cacciatore</th><th>Peso</th>`;
-  }
-  html += `</tr></thead><tbody>`;
-
-  items.forEach(h => {
-    if(section === 'cervi'){
-      html += `<tr><td>${h.localita}</td><td>${h.data}</td><td>${h.ora}</td><td><strong>${h.cacciatore}</strong></td><td>${h.peso}kg</td><td>${h.eta||'-'}</td></tr>`;
-    } else {
-      const sexEmoji = h.sesso === 'M' ? '♂' : '♀';
-      html += `<tr><td>${sexEmoji} ${h.sesso}</td><td>${h.localita}</td><td>${h.data}</td><td><strong>${h.cacciatore}</strong></td><td>${h.peso}kg</td></tr>`;
-    }
-  });
-
-  html += `</tbody></table></div>`;
-  return html;
-}
-
-// ===== AUTO REFRESH =====
-loadData();
-setInterval(loadData, 1200000); // Refresh every 20 minutes
+render();
 </script>
 </body>
 </html>
